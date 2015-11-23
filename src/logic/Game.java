@@ -13,20 +13,21 @@ public class Game {
 	private int turn = 1;
 	
 	//Adds players without names
-	public Game(int dices, int diceSides){
+	public Game(int dices, int diceSides, int players){
+		for(int i = 0; i < players; i++){
+			this.players.add(new Player());
+		}
 		cup = new Cup(dices, diceSides);
-		players.add(new Player());
-		players.add(new Player());
 		initializeArray();
 	}
 	
 	//Adds players with names
-	public Game(int dices, int diceSides, String playerOne, String playerTwo){
+	public Game(int dices, int diceSides, String[] names){
 		cup = new Cup(dices, diceSides);
-		players.add(new Player());
-		players.get(0).setName(playerOne);
-		players.add(new Player());
-		players.get(1).setName(playerTwo);
+		for(int i = 0; i < names.length; i++){
+			this.players.add(new Player());
+			this.players.get(i).setName(names[i]);
+		}
 		initializeArray();
 	}
 	
@@ -65,29 +66,13 @@ public class Game {
 	
 	//Checks win conditions and returns String based on result(won is set true if game is won)
 	public String checkWinningConditions(){
-		if(won == true){
-			//En person har fået en dårlig balance..
-			if(players.get(0).getBalance() == 0){
-				return players.get(1).getName()+" has won the game!";
-			}
-			else{
-				return players.get(0).getName()+" has won the game!";
-			}
+		if(players.size() == 1){
+			won = true;
+			return players.get(0).getName()+" has won the game, with a balance of: "+players.get(0).getBalance()+".";
 		}
-		//check om en person har vundet
-		if(players.get(0).getBalance() >= 3000 || players.get(1).getBalance() >= 3000){
-			if(players.get(0).getBalance() > players.get(1).getBalance()){
-				won = true;
-				return players.get(0).getName()+" has won the game!";
-			}
-			else if(players.get(0).getBalance() < players.get(1).getBalance()){
-				won = true;
-				return players.get(1).getName()+" has won the game!";
-			}
-			else{
-				won = true;
-				return "Both players achieved the same amount of points, and the game is tied!";
-			}
+		else if(players.size() < 0){
+			won = true;
+			return "Nobody won, all has lost their balance at the same round.";
 		}
 		else{
 			return "";
@@ -128,6 +113,10 @@ public class Game {
 		else{
 			return "You landed on "+name+" and nothing happens";
 		}
+	}
+	
+	public int getAmountOfPlayer(){
+		return players.size();
 	}
 	
 }

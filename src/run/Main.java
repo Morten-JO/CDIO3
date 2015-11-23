@@ -1,5 +1,7 @@
 package run;
 
+import java.util.ArrayList;
+
 import desktop_fields.Field;
 import desktop_fields.Street;
 import desktop_resources.GUI;
@@ -9,22 +11,35 @@ public class Main {
 
 	public static void main(String[] args) {
 		initializeGUI();
+		boolean endSelection = false;
+		ArrayList<String> names = new ArrayList<String>();
+		names.add(GUI.getUserString("Write player #"+names.size()+1+" name."));
+		names.add(GUI.getUserString("Write player #"+names.size()+1+" name."));
+		while(!endSelection){
+			if(GUI.getUserLeftButtonPressed("Add another player?", "Yes", "No")){
+				names.add(GUI.getUserString("Write player #"+names.size()+1+" name."));
+			}
+			else{
+				endSelection = true;
+			}
+			if(names.size() >= 6){
+				endSelection = true;
+			}
+		}
+		String[] array = new String[names.size()];
+		array = names.toArray(array);
+		Game game = new Game(2, 6, array);
 		
-		String playerOneName = GUI.getUserString("Write Player One Name");
-		String playerTwoName = GUI.getUserString("Write Player Two Name");
-		
-		Game game = new Game(2, 6, playerOneName, playerTwoName);
-		
-		GUI.addPlayer(game.getPlayer(0).getName(), game.getPlayer(0).getBalance());
-		GUI.addPlayer(game.getPlayer(1).getName(), game.getPlayer(1).getBalance());
+		for(int i = 0; i < array.length; i++){
+			GUI.addPlayer(game.getPlayer(i).getName(), game.getPlayer(i).getBalance());
+		}
 		
 		//Main loop, runs untill win conditions are true.
 		while(true){
-			while(game.getTurn() == 1){
-				rollPlayer(1, game);
-			}
-			while(game.getTurn() == 2){
-				rollPlayer(2, game);
+			for(int i = 1; i < game.getAmountOfPlayer()+1; i++){
+				while(game.getTurn() == i){
+					rollPlayer(i, game);
+				}
 			}
 			String message = game.checkWinningConditions();
 			if(game.getIfWon()){
