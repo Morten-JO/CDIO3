@@ -4,8 +4,10 @@ public class Player {
 
 	private String name = "";
 	private Account account;
+	private int position;
 	
 	public Player(){
+		position = 0;
 		account = new Account(30000);
 	}
 	
@@ -27,6 +29,14 @@ public class Player {
 	
 	public void setName(String name){
 		this.name = name;
+	}
+	
+	public int getPosition(){
+		return position;
+	}
+	
+	public void setPosition(int newPos){
+		this.position = newPos;
 	}
 	
 }

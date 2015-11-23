@@ -74,6 +74,9 @@ public class GameBoard {
 					return true;
 				}
 			}
+			else if(index >=15 && index <= 16){
+				return true;
+			}
 		}
 		return false;
 	}

@@ -2,14 +2,15 @@ package logic;
 
 import java.util.ArrayList;
 
+import boards.GameBoard;
 import entities.*;
 import fields.Field;
 
 public class Game {
 
+	private GameBoard gameBoard;
 	private Cup cup;
 	private ArrayList<Player> players = new ArrayList<Player>();
-	private Field[] fields = new Field[11];
 	private boolean won;
 	private int turn = 1;
 	
@@ -19,7 +20,7 @@ public class Game {
 			this.players.add(new Player());
 		}
 		cup = new Cup(dices, diceSides);
-		initializeArray();
+		gameBoard = new GameBoard();
 	}
 	
 	//Adds players with names
@@ -29,27 +30,41 @@ public class Game {
 			this.players.add(new Player());
 			this.players.get(i).setName(names[i]);
 		}
-		initializeArray();
+		gameBoard = new GameBoard();
 	}
 	
-	//Inserts the fields into the array
-	private void initializeArray(){
-	}
 	
-	//rolls dices for player, and changes turn if not rolled "Werewall"
-	public String rollPlayer(Player player){
+	//rolls dices for player, and changes turn if not rolled same dices
+	public boolean rollPlayer(Player player){
 		cup.rollDices();
-		if(cup.getDiceSum() != 10){
-			if(turn == 1){
-				turn = 2;
+		boolean sameHit = false;
+		for(int i = 1; i < cup.getAmountOfDices(); i++){
+			if(cup.getSumOfDice(i-1) == cup.getSumOfDice(i)){
+				sameHit = true;
 			}
 			else{
-				turn = 1;
+				sameHit = false;
 			}
 		}
-		//apply points and check if it was possible
+		if(sameHit != true){
+			turn++;
+			if(turn > players.size()){
+				turn = 0;
+			}
+		}
+		player.setPosition(player.getPosition()+cup.getDiceSum());
+		if(player.getPosition() >= gameBoard.getGameBoard().length){
+			player.setPosition(player.getPosition()-gameBoard.getGameBoard().length);
+		}
 		
-		return getOutputString(cup.getDiceSum());
+		if(gameBoard.askQuestion(player.getPosition())){
+			//ask question before...
+			return false;
+		}
+		else{
+			gameBoard.getGameBoardIndex(player.getPosition()).landOn(player);
+			return true;
+		}
 	}
 	
 	//Checks win conditions and returns String based on result(won is set true if game is won)
@@ -84,11 +99,18 @@ public class Game {
 	}
 	
 	public String getOutputString(int index){
-		String name = fields[index-2].getName();
 		return null;
 	}
 	
 	public int getAmountOfPlayer(){
 		return players.size();
+	}
+	
+	public String getFieldText(int index){
+		return gameBoard.getGameBoardIndex(index).fieldText();
+	}
+	
+	public GameBoard getGameBoard(){
+		return gameBoard;
 	}
 }

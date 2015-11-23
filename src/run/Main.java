@@ -58,13 +58,20 @@ public class Main {
 	 */
 	public static void rollPlayer(int player, Game game){
 		GUI.getUserButtonPressed(game.getPlayer(player-1).getName()+"'s turn to roll!", "Roll");
-		String desc = game.rollPlayer(game.getPlayer(player-1));
+		boolean desc = game.rollPlayer(game.getPlayer(player-1));
 		GUI.setDice(game.getCup().getSumOfDice(0), game.getCup().getSumOfDice(1));
 		GUI.removeAllCars(game.getPlayer(player-1).getName());
 		GUI.setCar(game.getCup().getDiceSum()-1, game.getPlayer(player-1).getName());
-		GUI.getUserButtonPressed(desc, "Ok");
-		GUI.setBalance(game.getPlayer(player-1).getName(), game.getPlayer(player-1).getBalance());
-		
+		//it did the round
+		if(desc == true){
+			GUI.getUserButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Ok");
+		}
+		else{
+			if(GUI.getUserLeftButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Yes", "No")){
+				game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1));
+				GUI.getUserButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "ok");
+			}
+		}
 	}
 	
 	public static void initializeGUI(){

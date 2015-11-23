@@ -57,4 +57,8 @@ public class Cup {
 			return 0;
 		}
 	}
+	
+	public int getAmountOfDices(){
+		return diceArray.size();
+	}
 }
