@@ -36,6 +36,11 @@ public class Game {
 	
 	//rolls dices for player, and changes turn if not rolled same dices
 	public boolean rollPlayer(Player player){
+		System.out.println("--------------------------------------");
+		for(int i = 0; i < gameBoard.getGameBoard().length; i++){
+			System.out.println(gameBoard.getGameBoard()[i]);
+		}
+		System.out.println("--------------------------------------");
 		cup.rollDices();
 		boolean sameHit = false;
 		for(int i = 1; i < cup.getAmountOfDices(); i++){

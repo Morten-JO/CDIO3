@@ -1,5 +1,7 @@
 package fields;
 
+import entities.Player;
+
 /**
  * Date: 23/11/2015
  *
@@ -27,5 +29,21 @@ public class LaborCamp extends Ownable{
 	public int getRent(){
 		return baseRent;
 	}
+	
+	@Override
+	public void landOn(Player player) {
+		if(!owner.equals(player)){
+			System.out.println("dice land not implemented yet..");
+		}
+		else if(owner == null){
+			owner = player;
+			player.adjustPoints(-price);
+		}
+		
+	}
 
+	@Override
+	public String toString() {
+		return super.toString()+" LaborCamp [baseRent=" + baseRent + "]";
+	}
 }

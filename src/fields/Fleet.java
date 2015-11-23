@@ -1,5 +1,7 @@
 package fields;
 
+import entities.Player;
+
 /**
  * Date: 23/11/2015
  *
@@ -32,5 +34,21 @@ public class Fleet extends Ownable{
 		}
 		return 0;
 	}
+	
+	@Override
+	public void landOn(Player player) {
+		if(!player.equals(owner)){
+			player.adjustPoints(-getRent());
+		}
+		else if(owner == null){
+			owner = player;
+			player.adjustPoints(-price);
+		}
+		
+	}
 
+	@Override
+	public String toString() {
+		return super.toString()+" Fleet []";
+	}
 }

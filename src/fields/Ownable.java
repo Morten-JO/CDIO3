@@ -58,4 +58,11 @@ public class Ownable extends Field{
 			return "This field belongs to "+owner.getName();
 		}
 	}
+
+	@Override
+	public String toString() {
+		return super.toString()+" Ownable [price=" + price + ", owner=" + owner + "]";
+	}
+	
+	
 }

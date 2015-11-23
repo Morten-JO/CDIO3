@@ -13,11 +13,11 @@ public class Main {
 		initializeGUI();
 		boolean endSelection = false;
 		ArrayList<String> names = new ArrayList<String>();
-		names.add(GUI.getUserString("Write player #"+names.size()+1+" name."));
-		names.add(GUI.getUserString("Write player #"+names.size()+1+" name."));
+		names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
+		names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
 		while(!endSelection){
 			if(GUI.getUserLeftButtonPressed("Add another player?", "Yes", "No")){
-				names.add(GUI.getUserString("Write player #"+names.size()+1+" name."));
+				names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
 			}
 			else{
 				endSelection = true;
@@ -74,52 +74,24 @@ public class Main {
 		}
 	}
 	
+	
 	public static void initializeGUI(){
-		Field[] list = new Field[11];
-		list[10] = new Street.Builder().build();
-		list[10].setTitle("Goldmine");
-		list[10].setSubText("650");
-		list[10].setDescription("Goldmine");
-		list[9] = new Street.Builder().build();
-		list[9].setTitle("The pit");
-		list[9].setSubText("-50");
-		list[9].setDescription("The pit");
-		list[8] = new Street.Builder().build();
-		list[8].setTitle("The Werewall");
-		list[8].setSubText("-80 + extra turn");
-		list[8].setDescription("The Werewall (extra turn)");
-		list[7] = new Street.Builder().build();
-		list[7].setTitle("Huts in the mountain");
-		list[7].setSubText("60");
-		list[7].setDescription("Huts in the mountain");
-		list[6] = new Street.Builder().build();
-		list[6].setTitle("Black cave");
-		list[6].setSubText("-70");
-		list[6].setDescription("Black cave");
-		list[5] = new Street.Builder().build();
-		list[5].setTitle("Monastery");
-		list[5].setSubText("0");
-		list[5].setDescription("Monastery");
-		list[4] = new Street.Builder().build();
-		list[4].setTitle("Walled city");
-		list[4].setSubText("180");
-		list[4].setDescription("Walled city");
-		list[3] = new Street.Builder().build();
-		list[3].setTitle("Cold Desert");
-		list[3].setSubText("-20");
-		list[3].setDescription("Cold Desert");
-		list[2] = new Street.Builder().build();
-		list[2].setTitle("Palace gates");
-		list[2].setSubText("100");
-		list[2].setDescription("Palace gates");
-		list[1] = new Street.Builder().build();
-		list[1].setTitle("Crater");
-		list[1].setSubText("-100");
-		list[1].setDescription("Crater");
-		list[0] = new Street.Builder().build();
-		list[0].setTitle("Tower");
-		list[0].setSubText("250");
-		list[0].setDescription("Tower");
+		String[] names = {"Tribe Encampment", "Crater", "Mountain", "Cold Desert", "Black Cave", "The Werewall", "Mountain village",
+						  "South Citadel", "Palace gates", "Tower", "Castle", "Walled city", "Monastery", "Huts in the mountain", 
+						  "The pit", "Goldmine", "Caravan", "Second Sail", "Sea Grover", "The Bucaneers", "Privateer armade"};
+		String[] subText = {"Rent: 100", "Rent: 300", "Rent: 500", "Rent: 700", "Rent: 1000", "Rent: 1300", "Rent: 1600", "Rent: 2000",
+							"Rent: 2600", "Rent: 3200", "Rent: 4000", "Receive: 5000", "Receive: 500", "100 x dice", "100 x dice", "Pay 2000",
+							"Pay 4000 or 10%", "Pay 500-4000", "Pay 500-4000", "Pay 500-4000", "Pay 500-4000"};
+		String[] desc = {"Price: 1000", "Price: 1500", "Price: 2000", "Price: 3000", "Price: 4000", "Price: 4300",
+						 "Price: 4750", "Price: 5000", "Price: 5500", "Price: 6000", "Price: 8000", "", "", "Price: 2500",
+						 "Price: 2500", "", "", "Price: 4000", "Price: 4000", "Price: 4000", "Price: 4000"};
+		Field[] list = new Field[21];
+		for(int i = 0; i < list.length; i++){
+			list[i] = new Street.Builder().build();
+			list[i].setTitle(names[i]);
+			list[i].setSubText(subText[i]);
+			list[i].setDescription(desc[i]);
+		}
 		GUI.create(list);
 	}
 }

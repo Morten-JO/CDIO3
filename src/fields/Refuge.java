@@ -31,11 +31,17 @@ public class Refuge extends Field{
 
 	@Override
 	public void landOn(Player player) {
+		player.adjustPoints(bonus);
 	}
 
 	@Override
 	public String fieldText() {
 		return "You gain "+bonus+".";
+	}
+
+	@Override
+	public String toString() {
+		return super.toString()+" Refuge [bonus=" + bonus + "]";
 	}
 
 	

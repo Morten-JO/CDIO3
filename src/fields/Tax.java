@@ -32,13 +32,16 @@ public class Tax extends Field{
 
 	@Override
 	public void landOn(Player player) {
+		player.adjustPoints(-taxAmount);
 	}
 
 	@Override
 	public String fieldText() {
 		return "You have to pay "+taxAmount+".";
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return super.toString()+" Tax [taxAmount=" + taxAmount + "]";
+	}
 }
