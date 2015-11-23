@@ -37,6 +37,8 @@ public class Game {
 	//rolls dices for player, and changes turn if not rolled same dices
 	public boolean rollPlayer(Player player){
 		cup.rollDices();
+		
+		//check if user hit same dice
 		boolean sameHit = false;
 		for(int i = 1; i < cup.getAmountOfDices(); i++){
 			if(cup.getSumOfDice(i-1) == cup.getSumOfDice(i)){
@@ -46,22 +48,27 @@ public class Game {
 				sameHit = false;
 			}
 		}
+		
+		//if same hit isnt the same, change turn
 		if(sameHit != true){
 			turn++;
 			if(turn > players.size()){
 				turn = 1;
 			}
 		}
+		
+		//sets positions, and if its over fields, start from 0
 		player.setPosition(player.getPosition()+cup.getDiceSum());
 		if(player.getPosition() >= gameBoard.getGameBoard().length){
 			player.setPosition(player.getPosition()-gameBoard.getGameBoard().length);
 		}
 		
+		//a question will be needed from user.
 		if(gameBoard.askQuestion(player.getPosition())){
-			//ask question before...
 			return false;
 		}
 		else{
+			//Do lands on field, and check if user can pay.
 			if(!gameBoard.getGameBoardIndex(player.getPosition()).landOn(player, this)){
 				//remove ownership from player
 				gameBoard.removeOwnerShip(player);

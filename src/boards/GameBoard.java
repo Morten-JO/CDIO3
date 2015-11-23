@@ -32,16 +32,15 @@ public class GameBoard {
 	}
 	
 	private void initializeGameBoard(){
-		//odmfgokmdfgokdsfokgtokdfokgokdfokgokdfgokdfokgokdfkogodfkgokdfokg
-		gameBoard[0] = new Territory("Tribe Encampment", 1000, 100000);
-		gameBoard[1] = new Territory("Crater", 1500, 300000);
-		gameBoard[2] = new Territory("Mountain", 2000, 500000);
-		gameBoard[3] = new Territory("Cold Desert", 3000, 700000);
-		gameBoard[4] = new Territory("Black Cave", 4000, 1000000);
-		gameBoard[5] = new Territory("The Werewall", 4300, 1300000);
-		gameBoard[6] = new Territory("Mountain Village", 4750, 1600000);
-		gameBoard[7] = new Territory("South Citadel", 5000, 2000000);
-		gameBoard[8] = new Territory("Palace Gates", 5500, 2600000);
+		gameBoard[0] = new Territory("Tribe Encampment", 1000, 100);
+		gameBoard[1] = new Territory("Crater", 1500, 300);
+		gameBoard[2] = new Territory("Mountain", 2000, 500);
+		gameBoard[3] = new Territory("Cold Desert", 3000, 700);
+		gameBoard[4] = new Territory("Black Cave", 4000, 1000);
+		gameBoard[5] = new Territory("The Werewall", 4300, 1300);
+		gameBoard[6] = new Territory("Mountain Village", 4750, 1600);
+		gameBoard[7] = new Territory("South Citadel", 5000, 2000);
+		gameBoard[8] = new Territory("Palace Gates", 5500, 2600);
 		gameBoard[9] = new Territory("Tower", 6000, 3200);
 		gameBoard[10] = new Territory("Castle", 8000, 4000);
 		gameBoard[11] = new Refuge("Walled City", 5000);

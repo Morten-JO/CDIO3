@@ -35,22 +35,13 @@ public class LaborCamp extends Ownable{
 	public boolean landOn(Player player, Game game) {
 		if(owner == null){
 			owner = player;
-			System.out.println();
-			System.out.println(player.getName()+" will buy: "+name+" for: "+price);
 			return player.adjustPoints(-price);
 		}
 		else if(!owner.equals(player)){
 			if(!player.adjustPoints(-(game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player)))){
-				System.out.println();
-				System.out.println(player.getName()+" Couldnt pay "+game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
-				System.out.println("Player balance is: "+player.getBalance()+", and rent was: "+game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
-				System.out.println("owner balance before: "+owner.getBalance());
 				owner.adjustPoints(player.getBalance());
-				System.out.println("owner balance before: "+owner.getBalance());
 				return false;
 			}
-			System.out.println();
-			System.out.println("Player balance is: "+player.getBalance()+", and rent was: "+game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
 			return owner.adjustPoints(game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
 		}
 		return true;

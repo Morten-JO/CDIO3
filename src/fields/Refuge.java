@@ -32,8 +32,6 @@ public class Refuge extends Field{
 
 	@Override
 	public boolean landOn(Player player, Game game) {
-		System.out.println();
-		System.out.println(player.getName()+" will get: "+bonus);
 		return player.adjustPoints(bonus);
 	}
 

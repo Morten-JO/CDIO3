@@ -13,8 +13,10 @@ public class Main {
 		initializeGUI();
 		boolean endSelection = false;
 		ArrayList<String> names = new ArrayList<String>();
+		//always adds atleast two players.
 		names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
 		names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
+		//can choose to add up to 6.
 		while(!endSelection){
 			if(GUI.getUserLeftButtonPressed("Add another player?", "Yes", "No")){
 				names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
@@ -26,35 +28,30 @@ public class Main {
 				endSelection = true;
 			}
 		}
+		//make it into an array.
 		String[] array = new String[names.size()];
 		array = names.toArray(array);
 		Game game = new Game(2, 6, array);
 		
+		//add players to GUI
 		for(int i = 0; i < array.length; i++){
 			GUI.addPlayer(game.getPlayer(i).getName(), game.getPlayer(i).getBalance());
 		}
 		
-		//Main loop, runs untill win conditions are true.
+		//Main loop, runs forever, until broken out(when game win conditions are true)
 		while(true){
-			//keeps rolling untill next players turn
+			//keeps rolling until next players turn
 			for(int i = 1; i < game.getAmountOfPlayer()+1; i++){
 				if(game.getAmountOfPlayer() == 1){
 					break;
 				}
-				if(game.getTurn() != 0){
-					System.out.println("let me guess... game.getturn is never == i");
-					System.out.println("let me guess... game.getturn = "+game.getTurn());
-					System.out.println("let me guess... amopuntofplayers = "+game.getAmountOfPlayer());
-				}
-				
 				while(game.getTurn() == i){
-					System.out.println("turn: "+game.getTurn());
+					//checks if a player has been removed.
 					int curr = game.getAmountOfPlayer();
 					rollPlayer(i, game);
 					if(game.getAmountOfPlayer() < curr ){
 						i--;
 						if(i != 0){
-							System.out.println("setting game.setturn to :"+i);
 							game.setTurn(i);
 						}
 						break;
@@ -80,16 +77,20 @@ public class Main {
 	 */
 	public static boolean rollPlayer(int player, Game game){
 		GUI.getUserButtonPressed(game.getPlayer(player-1).getName()+"'s turn to roll!", "Roll");
+		
 		int curr = game.getAmountOfPlayer();
+		//roll the player
 		boolean desc = game.rollPlayer(game.getPlayer(player-1));
 		if(game.getAmountOfPlayer() < curr ){
 			return false;
 		}
+		
 		GUI.setDice(game.getCup().getSumOfDice(0), game.getCup().getSumOfDice(1));
 		GUI.removeAllCars(game.getPlayer(player-1).getName());
 		//GUI is created to set car position not starting from zero indexed, so +1
 		GUI.setCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
-		//it did the round
+		
+		//desc returns false, if its a question. buy etc.
 		if(desc == true){
 			GUI.getUserButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Ok");
 		}
@@ -109,7 +110,7 @@ public class Main {
 		return true;
 	}
 	
-	
+	//intialize the graphical things for the GUI
 	public static void initializeGUI(){
 		String[] names = {"Tribe Encampment", "Crater", "Mountain", "Cold Desert", "Black Cave", "The Werewall", "Mountain village",
 						  "South Citadel", "Palace gates", "Tower", "Castle", "Walled city", "Monastery", "Huts in the mountain", 
@@ -130,6 +131,7 @@ public class Main {
 		GUI.create(list);
 	}
 	
+	//updates GUI balances so its possible to see when somebody lands on bought place
 	public static void updateBalanceAllPlayers(Game game){
 		for(int i = 0; i < game.getAmountOfPlayer(); i++){
 			GUI.setBalance(game.getPlayer(i).getName(), game.getPlayer(i).getBalance());

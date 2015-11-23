@@ -48,7 +48,6 @@ public class Ownable extends Field{
 
 	@Override
 	public boolean landOn(Player player, Game game) {
-		System.out.println("test");
 		return false;
 	}
 

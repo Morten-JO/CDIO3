@@ -33,8 +33,6 @@ public class Tax extends Field{
 
 	@Override
 	public boolean landOn(Player player, Game game) {
-		System.out.println("");
-		System.out.println(player.getName()+" will pay: "+taxAmount);
 		return player.adjustPoints(-taxAmount);
 	}
 
