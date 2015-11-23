@@ -6,7 +6,7 @@ public class Player {
 	private Account account;
 	
 	public Player(){
-		account = new Account(1000);
+		account = new Account(30000);
 	}
 	
 	public boolean adjustPoints(int dif){

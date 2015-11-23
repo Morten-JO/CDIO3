@@ -36,6 +36,7 @@ public class Main {
 		
 		//Main loop, runs untill win conditions are true.
 		while(true){
+			//keeps rolling untill next players turn
 			for(int i = 1; i < game.getAmountOfPlayer()+1; i++){
 				while(game.getTurn() == i){
 					rollPlayer(i, game);

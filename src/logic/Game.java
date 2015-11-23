@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 
 import entities.*;
+import fields.Field;
 
 public class Game {
 
@@ -33,17 +34,6 @@ public class Game {
 	
 	//Inserts the fields into the array
 	private void initializeArray(){
-		fields[0] = new Field("Tower", 250);
-		fields[1] = new Field("Crater", -100);
-		fields[2] = new Field("Palace gates", 100);
-		fields[3] = new Field("Cold Desert", -20);
-		fields[4] = new Field("Walled city", 180);
-		fields[5] = new Field("Monastery", 0);
-		fields[6] = new Field("Black cave", -70);
-		fields[7] = new Field("Huts in the mountain", 60);
-		fields[8] = new Field("The Werewall (werewolf-wall)", -80);
-		fields[9] = new Field("The pit", -50);
-		fields[10] = new Field("Goldmine", 650);
 	}
 	
 	//rolls dices for player, and changes turn if not rolled "Werewall"
@@ -58,9 +48,7 @@ public class Game {
 			}
 		}
 		//apply points and check if it was possible
-		if(!fields[cup.getDiceSum()-2].landOn(player)){
-			won = true;
-		}
+		
 		return getOutputString(cup.getDiceSum());
 	}
 	
@@ -97,26 +85,10 @@ public class Game {
 	
 	public String getOutputString(int index){
 		String name = fields[index-2].getName();
-		int points = fields[index-2].getPoints();
-		if(index == 10){
-			return "You landed on "+name+" and lost "+(-points)+" points, but gained an extra turn!";
-		}
-		if(index == 12){
-			return "You landed on "+name+". You are RICH!";
-		}
-		if(points > 0){
-			return "You landed on "+name+" and gain "+points+" points";
-		}
-		else if(points < 0){
-			return "You landed on "+name+" and lose "+(-points)+" points";
-		}
-		else{
-			return "You landed on "+name+" and nothing happens";
-		}
+		return null;
 	}
 	
 	public int getAmountOfPlayer(){
 		return players.size();
 	}
-	
 }
