@@ -1,5 +1,6 @@
 package fields;
 
+import logic.Game;
 import entities.Player;
 
 /**
@@ -46,7 +47,9 @@ public class Ownable extends Field{
 	}
 
 	@Override
-	public void landOn(Player player) {
+	public boolean landOn(Player player, Game game) {
+		System.out.println("test");
+		return false;
 	}
 
 	@Override
@@ -55,7 +58,7 @@ public class Ownable extends Field{
 			return "Would you like to buy "+name+" for "+price+"?";
 		}
 		else{
-			return "This field belongs to "+owner.getName();
+			return name+" belongs to "+owner.getName()+".";
 		}
 	}
 
@@ -64,5 +67,8 @@ public class Ownable extends Field{
 		return super.toString()+" Ownable [price=" + price + ", owner=" + owner + "]";
 	}
 	
+	public Player getOwner(){
+		return owner;
+	}
 	
 }

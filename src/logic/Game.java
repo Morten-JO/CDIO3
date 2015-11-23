@@ -36,11 +36,13 @@ public class Game {
 	
 	//rolls dices for player, and changes turn if not rolled same dices
 	public boolean rollPlayer(Player player){
-		System.out.println("--------------------------------------");
-		for(int i = 0; i < gameBoard.getGameBoard().length; i++){
-			System.out.println(gameBoard.getGameBoard()[i]);
-		}
-		System.out.println("--------------------------------------");
+		/*
+			System.out.println("--------------------------------------");
+			for(int i = 0; i < gameBoard.getGameBoard().length; i++){
+				System.out.println(gameBoard.getGameBoard()[i]);
+			}
+			System.out.println("--------------------------------------");
+		*/
 		cup.rollDices();
 		boolean sameHit = false;
 		for(int i = 1; i < cup.getAmountOfDices(); i++){
@@ -54,7 +56,7 @@ public class Game {
 		if(sameHit != true){
 			turn++;
 			if(turn > players.size()){
-				turn = 0;
+				turn = 1;
 			}
 		}
 		player.setPosition(player.getPosition()+cup.getDiceSum());
@@ -67,7 +69,9 @@ public class Game {
 			return false;
 		}
 		else{
-			gameBoard.getGameBoardIndex(player.getPosition()).landOn(player);
+			if(!gameBoard.getGameBoardIndex(player.getPosition()).landOn(player, this)){
+				players.remove(player);
+			}
 			return true;
 		}
 	}
@@ -117,5 +121,13 @@ public class Game {
 	
 	public GameBoard getGameBoard(){
 		return gameBoard;
+	}
+	
+	public void removePlayer(Player player){
+		players.remove(player);
+	}
+	
+	public void setTurn(int turn){
+		this.turn = turn;
 	}
 }

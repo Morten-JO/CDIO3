@@ -1,5 +1,6 @@
 package fields;
 
+import logic.Game;
 import entities.Player;
 
 /**
@@ -31,8 +32,10 @@ public class Tax extends Field{
 	}
 
 	@Override
-	public void landOn(Player player) {
-		player.adjustPoints(-taxAmount);
+	public boolean landOn(Player player, Game game) {
+		System.out.println("");
+		System.out.println(player.getName()+" will pay: "+taxAmount);
+		return player.adjustPoints(-taxAmount);
 	}
 
 	@Override

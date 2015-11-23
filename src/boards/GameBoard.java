@@ -1,5 +1,6 @@
 package boards;
 
+import entities.Player;
 import fields.Field;
 import fields.Fleet;
 import fields.LaborCamp;
@@ -69,13 +70,10 @@ public class GameBoard {
 	
 	public boolean askQuestion(int index){
 		if(index >= 0 && index < gameBoard.length){
-			if(index >= 0 && index <= 10  || index >= 12 && index <= 13 || index >= 17 && index <= 20){
+			if(index >= 0 && index <= 10  || index >= 13 && index <= 14 || index >= 17 && index <= 20){
 				if(!(((Ownable) gameBoard[index]).isTaken())){
 					return true;
 				}
-			}
-			else if(index >=15 && index <= 16){
-				return true;
 			}
 		}
 		return false;
@@ -87,6 +85,29 @@ public class GameBoard {
 		}
 	}
 	
+	public int getOwnerShipOfLaborCamps(Player player){
+		int ownerShip = 0;
+		for(int i = 13 ; i <15; i++){
+			Player tempPlayer = ((Ownable)(gameBoard[i])).getOwner();
+			if(tempPlayer != null){
+				if(tempPlayer.equals(player)){
+					ownerShip++;
+				}
+			}
+		}
+		return ownerShip;
+	}
 	
-	
+	public int getOwnerShipOfFleets(Player player){
+		int ownerShip = 0;
+		for(int i = 17 ; i < 21; i++){
+			Player tempPlayer = ((Ownable)(gameBoard[i])).getOwner();
+			if(tempPlayer != null){
+				if(tempPlayer.equals(player)){
+					ownerShip++;
+				}
+			}
+		}
+		return ownerShip;
+	}
 }

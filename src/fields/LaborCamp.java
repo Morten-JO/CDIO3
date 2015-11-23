@@ -1,5 +1,6 @@
 package fields;
 
+import logic.Game;
 import entities.Player;
 
 /**
@@ -31,19 +32,33 @@ public class LaborCamp extends Ownable{
 	}
 	
 	@Override
-	public void landOn(Player player) {
-		if(!owner.equals(player)){
-			System.out.println("dice land not implemented yet..");
-		}
-		else if(owner == null){
+	public boolean landOn(Player player, Game game) {
+		if(owner == null){
 			owner = player;
-			player.adjustPoints(-price);
+			System.out.println();
+			System.out.println(player.getName()+" will buy: "+name+" for: "+price);
+			return player.adjustPoints(-price);
 		}
-		
+		else if(!owner.equals(player)){
+			if(!player.adjustPoints(-(game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player)))){
+				System.out.println();
+				System.out.println(player.getName()+" Couldnt pay "+game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
+				System.out.println("Player balance is: "+player.getBalance()+", and rent was: "+game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
+				System.out.println("owner balance before: "+owner.getBalance());
+				owner.adjustPoints(player.getBalance());
+				System.out.println("owner balance before: "+owner.getBalance());
+				return false;
+			}
+			System.out.println();
+			System.out.println("Player balance is: "+player.getBalance()+", and rent was: "+game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
+			return owner.adjustPoints(game.getCup().getDiceSum()*game.getGameBoard().getOwnerShipOfLaborCamps(player));
+		}
+		return true;
 	}
 
 	@Override
 	public String toString() {
 		return super.toString()+" LaborCamp [baseRent=" + baseRent + "]";
 	}
+	
 }

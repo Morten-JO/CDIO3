@@ -1,5 +1,6 @@
 package fields;
 
+import logic.Game;
 import entities.Player;
 
 public abstract class Field {
@@ -14,7 +15,7 @@ public abstract class Field {
 		return name;
 	}
 	
-	public abstract void landOn(Player player);
+	public abstract boolean landOn(Player player, Game game);
 
 	@Override
 	public String toString() {

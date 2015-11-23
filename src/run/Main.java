@@ -38,13 +38,20 @@ public class Main {
 		while(true){
 			//keeps rolling untill next players turn
 			for(int i = 1; i < game.getAmountOfPlayer()+1; i++){
+				if(game.getAmountOfPlayer() == 1){
+					break;
+				}
 				while(game.getTurn() == i){
-					rollPlayer(i, game);
+					if(!rollPlayer(i, game)){
+						game.setTurn(i);
+						i--;
+						break;
+					}
 				}
 			}
 			String message = game.checkWinningConditions();
 			if(game.getIfWon()){
-				GUI.showMessage(message);
+				GUI.getUserButtonPressed(message, "Ok");
 				break;
 			}
 		}
@@ -56,22 +63,33 @@ public class Main {
 	/*
 	 * Tells user to roll dices by pressing button, and sets the approriate things after rolling the dices
 	 */
-	public static void rollPlayer(int player, Game game){
+	public static boolean rollPlayer(int player, Game game){
 		GUI.getUserButtonPressed(game.getPlayer(player-1).getName()+"'s turn to roll!", "Roll");
 		boolean desc = game.rollPlayer(game.getPlayer(player-1));
 		GUI.setDice(game.getCup().getSumOfDice(0), game.getCup().getSumOfDice(1));
 		GUI.removeAllCars(game.getPlayer(player-1).getName());
-		GUI.setCar(game.getCup().getDiceSum()-1, game.getPlayer(player-1).getName());
+		//GUI is created to set car position not starting from zero indexed, so +1
+		GUI.setCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
 		//it did the round
 		if(desc == true){
 			GUI.getUserButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Ok");
 		}
 		else{
 			if(GUI.getUserLeftButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Yes", "No")){
-				game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1));
-				GUI.getUserButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "ok");
+				if(!game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1), game)){
+					GUI.removeCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
+					game.removePlayer(game.getPlayer(player-1));
+					return false;
+					
+				}
+			}
+			else{
+				System.out.println("bug?");
+				
 			}
 		}
+		updateBalanceAllPlayers(game);
+		return true;
 	}
 	
 	
@@ -93,5 +111,11 @@ public class Main {
 			list[i].setDescription(desc[i]);
 		}
 		GUI.create(list);
+	}
+	
+	public static void updateBalanceAllPlayers(Game game){
+		for(int i = 0; i < game.getAmountOfPlayer(); i++){
+			GUI.setBalance(game.getPlayer(i).getName(), game.getPlayer(i).getBalance());
+		}
 	}
 }

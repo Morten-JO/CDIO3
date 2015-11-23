@@ -1,5 +1,6 @@
 package fields;
 
+import logic.Game;
 import entities.Player;
 
 /**
@@ -30,8 +31,10 @@ public class Refuge extends Field{
 	}
 
 	@Override
-	public void landOn(Player player) {
-		player.adjustPoints(bonus);
+	public boolean landOn(Player player, Game game) {
+		System.out.println();
+		System.out.println(player.getName()+" will get: "+bonus);
+		return player.adjustPoints(bonus);
 	}
 
 	@Override

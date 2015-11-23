@@ -1,5 +1,6 @@
 package fields;
 
+import logic.Game;
 import entities.Player;
 
 /**
@@ -31,14 +32,28 @@ public class Territory extends Ownable{
 	}
 	
 	@Override
-	public void landOn(Player player){
-		if(!player.equals(owner)){
-			player.adjustPoints(-rent);
-		}
-		else if(owner == null){
+	public boolean landOn(Player player, Game game){
+		if(owner == null){
 			this.owner = player;
-			player.adjustPoints(-price);
+			System.out.println();
+			System.out.println(player.getName()+" will buy: "+name+" for: "+price);
+			return player.adjustPoints(-price);
 		}
+		else if(!owner.equals(player)){
+			if(!player.adjustPoints(-rent)){
+				System.out.println();
+				System.out.println(player.getName()+" Couldnt pay "+rent);
+				System.out.println("Player balance is: "+player.getBalance()+", and rent was: "+rent);
+				System.out.println("owner balance before: "+owner.getBalance());
+				owner.adjustPoints(player.getBalance());
+				System.out.println("owner balance after: "+owner.getBalance());
+				return false;
+			}
+			System.out.println();
+			System.out.println("Player balance is: "+player.getBalance()+", and rent was: "+rent);
+			return owner.adjustPoints(rent);
+		}
+		return true;
 	}
 
 	@Override
