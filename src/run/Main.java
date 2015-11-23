@@ -41,10 +41,25 @@ public class Main {
 				if(game.getAmountOfPlayer() == 1){
 					break;
 				}
+				if(game.getTurn() != 0){
+					System.out.println("let me guess... game.getturn is never == i");
+					System.out.println("let me guess... game.getturn = "+game.getTurn());
+					System.out.println("let me guess... amopuntofplayers = "+game.getAmountOfPlayer());
+				}
+				
 				while(game.getTurn() == i){
-					if(!rollPlayer(i, game)){
-						game.setTurn(i);
+					System.out.println("turn: "+game.getTurn());
+					int curr = game.getAmountOfPlayer();
+					rollPlayer(i, game);
+					if(game.getAmountOfPlayer() < curr ){
 						i--;
+						if(i != 0){
+							System.out.println("setting game.setturn to :"+i);
+							game.setTurn(i);
+						}
+						break;
+					}
+					if(game.getAmountOfPlayer() == 1){
 						break;
 					}
 				}
@@ -65,7 +80,11 @@ public class Main {
 	 */
 	public static boolean rollPlayer(int player, Game game){
 		GUI.getUserButtonPressed(game.getPlayer(player-1).getName()+"'s turn to roll!", "Roll");
+		int curr = game.getAmountOfPlayer();
 		boolean desc = game.rollPlayer(game.getPlayer(player-1));
+		if(game.getAmountOfPlayer() < curr ){
+			return false;
+		}
 		GUI.setDice(game.getCup().getSumOfDice(0), game.getCup().getSumOfDice(1));
 		GUI.removeAllCars(game.getPlayer(player-1).getName());
 		//GUI is created to set car position not starting from zero indexed, so +1
@@ -78,14 +97,12 @@ public class Main {
 			if(GUI.getUserLeftButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Yes", "No")){
 				if(!game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1), game)){
 					GUI.removeCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
+					//remove ownership from player..
+					game.getGameBoard().removeOwnerShip(game.getPlayer(player-1));
 					game.removePlayer(game.getPlayer(player-1));
 					return false;
 					
 				}
-			}
-			else{
-				System.out.println("bug?");
-				
 			}
 		}
 		updateBalanceAllPlayers(game);
