@@ -4,20 +4,6 @@ import language.TextStrings;
 import logic.Game;
 import entities.Player;
 
-/**
- * Date: 23/11/2015
- *
- * Project: 25_CDIO3
- *
- * File: Ownable.java
- *
- * Created by: Morten Jørvad
- *
- * Github: https://github.com/Mortenbaws
- *
- * Email: morten2094@gmail.com
- */
-
 public class Ownable extends Field{
 
 	protected int price;

@@ -1,20 +1,8 @@
 package tests;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import entities.Dice;
-
-/**
- * Date: 03/11/2015
- *
- * Project: CDIO2
- *
- * File: DiceTest.java
- *
- * Created by: Morten Jørvad
- */
 
 public class DiceTest {
 

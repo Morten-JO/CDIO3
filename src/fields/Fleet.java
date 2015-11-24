@@ -3,20 +3,6 @@ package fields;
 import logic.Game;
 import entities.Player;
 
-/**
- * Date: 23/11/2015
- *
- * Project: 25_CDIO3
- *
- * File: Fleet.java
- *
- * Created by: Morten Jørvad
- *
- * Github: https://github.com/Mortenbaws
- *
- * Email: morten2094@gmail.com
- */
-
 public class Fleet extends Ownable{
 
 	public static int[] RENTS = {500, 1000, 2000, 4000};

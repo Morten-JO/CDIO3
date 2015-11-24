@@ -6,16 +6,6 @@ import org.junit.Test;
 
 import entities.Cup;
 
-/**
- * Date: 03/11/2015
- *
- * Project: CDIO2
- *
- * File: CupTest.java
- *
- * Created by: Morten J�rvad
- */
-
 public class CupTest {
 
 	@Test

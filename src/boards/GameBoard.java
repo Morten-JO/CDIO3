@@ -10,20 +10,6 @@ import fields.Refuge;
 import fields.Tax;
 import fields.Territory;
 
-/**
- * Date: 23/11/2015
- *
- * Project: 25_CDIO3
- *
- * File: GameBoard.java
- *
- * Created by: Morten Jørvad
- *
- * Github: https://github.com/Mortenbaws
- *
- * Email: morten2094@gmail.com
- */
-
 public class GameBoard {
 
 	private Field[] gameBoard = new Field[21];

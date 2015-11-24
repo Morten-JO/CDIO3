@@ -6,16 +6,6 @@ import org.junit.Test;
 
 import entities.Account;
 
-/**
- * Date: 03/11/2015
- *
- * Project: CDIO2
- *
- * File: AccountTest.java
- *
- * Created by: Morten Jørvad
- */
-
 public class AccountTest {
 
 	@Test
