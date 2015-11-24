@@ -41,6 +41,10 @@ public class TextStrings {
 	public final static String dice = "dice";
 	public final static String or = "or";
 	public final static String big_price = "Price";
+	public final static String how_would_you = "How would you like to pay?";
+	public final static String you_landed = "You landed on ";
+	public final static String taxed = "You have paid the tax for caravan";
+	public final static String on = "on";
 	
 	public final static String tribe_enc = "Tribe Encampment";
 	public final static String crater = "Crater";

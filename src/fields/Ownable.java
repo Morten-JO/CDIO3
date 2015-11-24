@@ -44,7 +44,7 @@ public class Ownable extends Field{
 			return TextStrings.like_to_buy+name+" "+TextStrings.word_for+" "+price+"?";
 		}
 		else{
-			return name+" belongs to "+owner.getName()+" "+TextStrings.have_to_pay+" "+price+".";
+			return name+" belongs to "+owner.getName()+" "+TextStrings.have_to_pay+" "+getRent()+".";
 		}
 	}
 

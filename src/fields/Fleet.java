@@ -1,5 +1,6 @@
 package fields;
 
+import language.TextStrings;
 import logic.Game;
 import entities.Player;
 
@@ -14,7 +15,7 @@ public class Fleet extends Ownable{
 	@Override
 	public int getRent(){
 		if(owner != null){
-			//ill ocme back to this...
+			return 500;
 		}
 		return 0;
 	}
@@ -38,5 +39,15 @@ public class Fleet extends Ownable{
 	@Override
 	public String toString() {
 		return super.toString()+" Fleet []";
+	}
+	
+	@Override
+	public String fieldText() {
+		if(owner == null){
+			return TextStrings.like_to_buy+name+" "+TextStrings.word_for+" "+price+"?";
+		}
+		else{
+			return name+" belongs to "+owner.getName()+" "+TextStrings.have_to_pay+" "+RENTS[0]+"/"+RENTS[1]+"/"+RENTS[2]+"/"+RENTS[3]+".";
+		}
 	}
 }

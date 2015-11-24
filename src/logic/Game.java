@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 
+import desktop_resources.GUI;
 import language.TextStrings;
 import boards.GameBoard;
 import entities.Cup;
@@ -132,5 +133,22 @@ public class Game {
 	
 	public void setTurn(int turn){
 		this.turn = turn;
+	}
+	
+	
+	/**
+	 * POSSIBLY TEMP
+	 * @return
+	 */
+	public boolean askQuestion(String message, String buttonOne, String buttonTwo){
+		GUI.setChanceCard(message);
+		GUI.displayChanceCard();
+		String input = GUI.getUserButtonPressed("", buttonOne, buttonTwo);
+		if(input.equals(buttonOne)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

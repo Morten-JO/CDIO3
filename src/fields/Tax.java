@@ -6,7 +6,7 @@ import entities.Player;
 
 public class Tax extends Field{
 
-	private int taxAmount;
+	protected int taxAmount;
 	private static int taxRate = -1;
 	
 	public Tax(String name, int taxAmount) {

@@ -8,6 +8,7 @@ import fields.LaborCamp;
 import fields.Ownable;
 import fields.Refuge;
 import fields.Tax;
+import fields.TaxProcent;
 import fields.Territory;
 
 public class GameBoard {
@@ -35,7 +36,7 @@ public class GameBoard {
 		gameBoard[13] = new LaborCamp(TextStrings.huts_in_the_mountain, 2500, 100);
 		gameBoard[14] = new LaborCamp(TextStrings.the_pit, 2500, 100);
 		gameBoard[15] = new Tax(TextStrings.goldmine, 2000);
-		gameBoard[16] = new Tax(TextStrings.caravan, 4000);
+		gameBoard[16] = new TaxProcent(TextStrings.caravan, 4000, 10);
 		gameBoard[17] = new Fleet(TextStrings.second_sail, 4000);
 		gameBoard[18] = new Fleet(TextStrings.sea_grover, 4000);
 		gameBoard[19] = new Fleet(TextStrings.the_buccaneers, 4000);
@@ -109,5 +110,11 @@ public class GameBoard {
 				}
 			}
 		}
+	}
+	
+	public int getUserValue(Player player){
+		int value = 0;
+		
+		return value;
 	}
 }

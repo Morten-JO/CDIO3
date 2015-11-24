@@ -1,5 +1,6 @@
 package fields;
 
+import language.TextStrings;
 import logic.Game;
 import entities.Player;
 
@@ -37,4 +38,15 @@ public class Territory extends Ownable{
 	public String toString() {
 		return super.toString()+ " Territory [rent=" + rent + "]";
 	}
+	
+	@Override
+	public String fieldText() {
+		if(owner == null){
+			return TextStrings.like_to_buy+name+" "+TextStrings.word_for+" "+price+"?";
+		}
+		else{
+			return name+" belongs to "+owner.getName()+" "+TextStrings.have_to_pay+" "+getRent()+".";
+		}
+	}
+	
 }

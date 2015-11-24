@@ -79,7 +79,9 @@ public class Main {
 			}
 			String message = game.checkWinningConditions();
 			if(game.getIfWon()){
-				GUI.getUserButtonPressed(message, TextStrings.ok);
+				GUI.setChanceCard(message);
+				GUI.displayChanceCard();
+				GUI.getUserButtonPressed("", TextStrings.ok);
 				break;
 			}
 		}
