@@ -1,5 +1,6 @@
 package fields;
 
+import language.TextStrings;
 import logic.Game;
 import entities.Player;
 
@@ -54,10 +55,10 @@ public class Ownable extends Field{
 	@Override
 	public String fieldText() {
 		if(owner == null){
-			return "Would you like to buy "+name+" for "+price+"?";
+			return TextStrings.like_to_buy+name+" "+TextStrings.word_for+" "+price+"?";
 		}
 		else{
-			return name+" belongs to "+owner.getName()+".";
+			return name+" belongs to "+owner.getName()+" "+TextStrings.have_to_pay+" "+price+".";
 		}
 	}
 

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import desktop_fields.Field;
 import desktop_fields.Street;
 import desktop_resources.GUI;
+import entities.Player;
+import fields.Ownable;
+import language.TextStrings;
 import logic.Game;
 
 public class Main {
@@ -14,12 +17,24 @@ public class Main {
 		boolean endSelection = false;
 		ArrayList<String> names = new ArrayList<String>();
 		//always adds atleast two players.
-		names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
-		names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
+		//ask person 1 to type in name in chance card
+		GUI.setChanceCard(TextStrings.write_player+" #"+(names.size()+1)+" "+TextStrings.name+".");
+		GUI.displayChanceCard();
+		names.add(GUI.getUserString(""));
+		//ask person 2 to type in name in chance card
+		GUI.setChanceCard(TextStrings.write_player+" #"+(names.size()+1)+" "+TextStrings.name+".");
+		GUI.displayChanceCard();
+		names.add(GUI.getUserString(""));
 		//can choose to add up to 6.
 		while(!endSelection){
-			if(GUI.getUserLeftButtonPressed("Add another player?", "Yes", "No")){
-				names.add(GUI.getUserString("Write player #"+(names.size()+1)+" name."));
+			//show question to add another player in chance card
+			GUI.setChanceCard(TextStrings.add_another_player);
+			GUI.displayChanceCard();
+			if(GUI.getUserLeftButtonPressed("", TextStrings.yes, TextStrings.no)){
+				//ask person to write player name
+				GUI.setChanceCard(TextStrings.write_player+" #"+(names.size()+1)+" "+TextStrings.name+".");
+				GUI.displayChanceCard();
+				names.add(GUI.getUserString(""));
 			}
 			else{
 				endSelection = true;
@@ -52,6 +67,7 @@ public class Main {
 					if(game.getAmountOfPlayer() < curr ){
 						i--;
 						if(i != 0){
+							GUI.setBalance(game.getPlayer(i-1).getName(), 0);
 							game.setTurn(i);
 						}
 						break;
@@ -63,12 +79,11 @@ public class Main {
 			}
 			String message = game.checkWinningConditions();
 			if(game.getIfWon()){
-				GUI.getUserButtonPressed(message, "Ok");
+				GUI.getUserButtonPressed(message, TextStrings.ok);
 				break;
 			}
 		}
-		
-		GUI.getUserButtonPressed("", "Exit");
+		GUI.getUserButtonPressed("", TextStrings.exit);
 		GUI.close();
 	}
 	
@@ -76,12 +91,17 @@ public class Main {
 	 * Tells user to roll dices by pressing button, and sets the approriate things after rolling the dices
 	 */
 	public static boolean rollPlayer(int player, Game game){
-		GUI.getUserButtonPressed(game.getPlayer(player-1).getName()+"'s turn to roll!", "Roll");
+		//show turn to roll in chance card
+		GUI.setChanceCard(game.getPlayer(player-1).getName()+TextStrings.turn_to_roll);
+		GUI.displayChanceCard();
+		
+		GUI.getUserButtonPressed("", TextStrings.word_roll);
 		
 		int curr = game.getAmountOfPlayer();
 		//roll the player
 		boolean desc = game.rollPlayer(game.getPlayer(player-1));
 		if(game.getAmountOfPlayer() < curr ){
+			GUI.setBalance(game.getPlayer(player-1).getName(), 0);
 			return false;
 		}
 		
@@ -90,12 +110,16 @@ public class Main {
 		//GUI is created to set car position not starting from zero indexed, so +1
 		GUI.setCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
 		
+		//Show turn description in chance card
+		GUI.setChanceCard(game.getFieldText(game.getPlayer(player-1).getPosition()));
+		GUI.displayChanceCard();
+		
 		//desc returns false, if its a question. buy etc.
 		if(desc == true){
-			GUI.getUserButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Ok");
+			GUI.getUserButtonPressed("", TextStrings.ok);
 		}
 		else{
-			if(GUI.getUserLeftButtonPressed(game.getFieldText(game.getPlayer(player-1).getPosition()), "Yes", "No")){
+			if(GUI.getUserLeftButtonPressed("", TextStrings.yes, TextStrings.no)){
 				if(!game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1), game)){
 					GUI.removeCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
 					//remove ownership from player..
@@ -107,20 +131,21 @@ public class Main {
 			}
 		}
 		updateBalanceAllPlayers(game);
+		updateFields(game);
 		return true;
 	}
 	
 	//intialize the graphical things for the GUI
 	public static void initializeGUI(){
-		String[] names = {"Tribe Encampment", "Crater", "Mountain", "Cold Desert", "Black Cave", "The Werewall", "Mountain village",
-						  "South Citadel", "Palace gates", "Tower", "Castle", "Walled city", "Monastery", "Huts in the mountain", 
-						  "The pit", "Goldmine", "Caravan", "Second Sail", "Sea Grover", "The Bucaneers", "Privateer armade"};
-		String[] subText = {"Rent: 100", "Rent: 300", "Rent: 500", "Rent: 700", "Rent: 1000", "Rent: 1300", "Rent: 1600", "Rent: 2000",
-							"Rent: 2600", "Rent: 3200", "Rent: 4000", "Receive: 5000", "Receive: 500", "100 x dice", "100 x dice", "Pay 2000",
-							"Pay 4000 or 10%", "Pay 500-4000", "Pay 500-4000", "Pay 500-4000", "Pay 500-4000"};
-		String[] desc = {"Price: 1000", "Price: 1500", "Price: 2000", "Price: 3000", "Price: 4000", "Price: 4300",
-						 "Price: 4750", "Price: 5000", "Price: 5500", "Price: 6000", "Price: 8000", "", "", "Price: 2500",
-						 "Price: 2500", "", "", "Price: 4000", "Price: 4000", "Price: 4000", "Price: 4000"};
+		String[] names = {TextStrings.tribe_enc, TextStrings.crater, TextStrings.mountain, TextStrings.cold_desert, TextStrings.black_cave, TextStrings.the_werewall, TextStrings.mountain_village,
+						  TextStrings.south_citadel, TextStrings.palace_gates, TextStrings.tower, TextStrings.castle, TextStrings.walled_city, TextStrings.monastery, TextStrings.huts_in_the_mountain, 
+						  TextStrings.the_pit, TextStrings.goldmine, TextStrings.caravan, TextStrings.second_sail, TextStrings.sea_grover, TextStrings.the_buccaneers, TextStrings.privateer_armade};
+		String[] subText = {TextStrings.rent+": 100", TextStrings.rent+": 300", TextStrings.rent+": 500", TextStrings.rent+": 700", TextStrings.rent+": 1000", TextStrings.rent+": 1300", TextStrings.rent+": 1600", TextStrings.rent+": 2000",
+							TextStrings.rent+": 2600", TextStrings.rent+": 3200", TextStrings.rent+": 4000", TextStrings.receive+": 5000", TextStrings.receive+":: 500", "100 * "+TextStrings.dice, "100 * "+TextStrings.dice, TextStrings.pay+" 2000",
+							TextStrings.pay+" 4000 "+TextStrings.or+" 10%", TextStrings.pay+" 500-4000", TextStrings.pay+" 500-4000", TextStrings.pay+" 500-4000", TextStrings.pay+" 500-4000"};
+		String[] desc = {TextStrings.big_price+": 1000", TextStrings.big_price+": 1500", TextStrings.big_price+": 2000", TextStrings.big_price+": 3000", TextStrings.big_price+": 4000", TextStrings.big_price+": 4300",
+						TextStrings.big_price+": 4750", TextStrings.big_price+": 5000", TextStrings.big_price+": 5500", TextStrings.big_price+": 6000", TextStrings.big_price+": 8000", "", "", TextStrings.big_price+": 2500",
+						TextStrings.big_price+": 2500", "", "", TextStrings.big_price+": 4000", TextStrings.big_price+": 4000", TextStrings.big_price+": 4000", TextStrings.big_price+": 4000"};
 		Field[] list = new Field[21];
 		for(int i = 0; i < list.length; i++){
 			list[i] = new Street.Builder().build();
@@ -135,6 +160,18 @@ public class Main {
 	public static void updateBalanceAllPlayers(Game game){
 		for(int i = 0; i < game.getAmountOfPlayer(); i++){
 			GUI.setBalance(game.getPlayer(i).getName(), game.getPlayer(i).getBalance());
+		}
+	}
+	
+	public static void updateFields(Game game){
+		for(int i = 0; i < game.getGameBoard().getGameBoard().length; i++){
+			if(i >= 0 && i <= 10  || i >= 13 && i <= 14 || i >= 17 && i <= 20){
+				if((((Ownable) game.getGameBoard().getGameBoardIndex(i)).isTaken())){
+					Player player = ((Ownable) game.getGameBoard().getGameBoardIndex(i)).getOwner();
+					//GUI isnt zero indexed, so its +1
+					GUI.setOwner(i+1, player.getName());
+				}
+			}
 		}
 	}
 }

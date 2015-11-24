@@ -1,5 +1,6 @@
 package boards;
 
+import language.TextStrings;
 import entities.Player;
 import fields.Field;
 import fields.Fleet;
@@ -32,27 +33,27 @@ public class GameBoard {
 	}
 	
 	private void initializeGameBoard(){
-		gameBoard[0] = new Territory("Tribe Encampment", 1000, 100);
-		gameBoard[1] = new Territory("Crater", 1500, 300);
-		gameBoard[2] = new Territory("Mountain", 2000, 500);
-		gameBoard[3] = new Territory("Cold Desert", 3000, 700);
-		gameBoard[4] = new Territory("Black Cave", 4000, 1000);
-		gameBoard[5] = new Territory("The Werewall", 4300, 1300);
-		gameBoard[6] = new Territory("Mountain Village", 4750, 1600);
-		gameBoard[7] = new Territory("South Citadel", 5000, 2000);
-		gameBoard[8] = new Territory("Palace Gates", 5500, 2600);
-		gameBoard[9] = new Territory("Tower", 6000, 3200);
-		gameBoard[10] = new Territory("Castle", 8000, 4000);
-		gameBoard[11] = new Refuge("Walled City", 5000);
-		gameBoard[12] = new Refuge("Monastery", 500);
-		gameBoard[13] = new LaborCamp("Huts In The Mountain", 2500, 100);
-		gameBoard[14] = new LaborCamp("The Pit", 2500, 100);
-		gameBoard[15] = new Tax("Goldmine", 2000);
-		gameBoard[16] = new Tax("Caravan", 4000);
-		gameBoard[17] = new Fleet("Second Sail", 4000);
-		gameBoard[18] = new Fleet("Sea Grover", 4000);
-		gameBoard[19] = new Fleet("The Buccaneers", 4000);
-		gameBoard[20] = new Fleet("Privateer Armade", 4000);
+		gameBoard[0] = new Territory(TextStrings.tribe_enc, 1000, 100);
+		gameBoard[1] = new Territory(TextStrings.crater, 1500, 300);
+		gameBoard[2] = new Territory(TextStrings.mountain, 2000, 500);
+		gameBoard[3] = new Territory(TextStrings.cold_desert, 3000, 700);
+		gameBoard[4] = new Territory(TextStrings.black_cave, 4000, 1000);
+		gameBoard[5] = new Territory(TextStrings.the_werewall, 4300, 1300);
+		gameBoard[6] = new Territory(TextStrings.mountain_village, 4750, 1600);
+		gameBoard[7] = new Territory(TextStrings.south_citadel, 5000, 2000);
+		gameBoard[8] = new Territory(TextStrings.palace_gates, 5500, 2600);
+		gameBoard[9] = new Territory(TextStrings.tower, 6000, 3200);
+		gameBoard[10] = new Territory(TextStrings.castle, 8000, 4000);
+		gameBoard[11] = new Refuge(TextStrings.walled_city, 5000);
+		gameBoard[12] = new Refuge(TextStrings.monastery, 500);
+		gameBoard[13] = new LaborCamp(TextStrings.huts_in_the_mountain, 2500, 100);
+		gameBoard[14] = new LaborCamp(TextStrings.the_pit, 2500, 100);
+		gameBoard[15] = new Tax(TextStrings.goldmine, 2000);
+		gameBoard[16] = new Tax(TextStrings.caravan, 4000);
+		gameBoard[17] = new Fleet(TextStrings.second_sail, 4000);
+		gameBoard[18] = new Fleet(TextStrings.sea_grover, 4000);
+		gameBoard[19] = new Fleet(TextStrings.the_buccaneers, 4000);
+		gameBoard[20] = new Fleet(TextStrings.privateer_armade, 4000);
 	}
 	
 	public Field[] getGameBoard(){

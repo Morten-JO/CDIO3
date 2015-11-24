@@ -2,9 +2,10 @@ package logic;
 
 import java.util.ArrayList;
 
+import language.TextStrings;
 import boards.GameBoard;
-import entities.*;
-import fields.Field;
+import entities.Cup;
+import entities.Player;
 
 public class Game {
 
@@ -73,7 +74,6 @@ public class Game {
 				//remove ownership from player
 				gameBoard.removeOwnerShip(player);
 				players.remove(player);
-				
 			}
 			return true;
 		}
@@ -83,11 +83,11 @@ public class Game {
 	public String checkWinningConditions(){
 		if(players.size() == 1){
 			won = true;
-			return players.get(0).getName()+" has won the game, with a balance of: "+players.get(0).getBalance()+".";
+			return players.get(0).getName()+TextStrings.has_won_game+players.get(0).getBalance()+".";
 		}
 		else if(players.size() < 0){
 			won = true;
-			return "Nobody won, all has lost their balance at the same round.";
+			return TextStrings.nobody_won;
 		}
 		else{
 			return "";

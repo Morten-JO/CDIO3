@@ -1,5 +1,6 @@
 package fields;
 
+import language.TextStrings;
 import logic.Game;
 import entities.Player;
 
@@ -37,7 +38,7 @@ public class Refuge extends Field{
 
 	@Override
 	public String fieldText() {
-		return "You gain "+bonus+".";
+		return TextStrings.you_gain+" "+bonus+".";
 	}
 
 	@Override

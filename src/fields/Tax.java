@@ -1,5 +1,6 @@
 package fields;
 
+import language.TextStrings;
 import logic.Game;
 import entities.Player;
 
@@ -38,7 +39,7 @@ public class Tax extends Field{
 
 	@Override
 	public String fieldText() {
-		return "You have to pay "+taxAmount+".";
+		return TextStrings.you_have_to_pay+taxAmount+" "+TextStrings.for_landing_on+" "+name+".";
 	}
 
 	@Override
