@@ -30,7 +30,7 @@ public class Main {
 			//show question to add another player in chance card
 			GUI.setChanceCard(TextStrings.add_another_player);
 			GUI.displayChanceCard();
-			if(GUI.getUserLeftButtonPressed("", TextStrings.yes, TextStrings.no)){
+ 			if(GUI.getUserLeftButtonPressed("", TextStrings.yes, TextStrings.no)){
 				//ask person to write player name
 				GUI.setChanceCard(TextStrings.write_player+" #"+(names.size()+1)+" "+TextStrings.name+".");
 				GUI.displayChanceCard();
@@ -170,6 +170,9 @@ public class Main {
 					Player player = ((Ownable) game.getGameBoard().getGameBoardIndex(i)).getOwner();
 					//GUI isnt zero indexed, so its +1
 					GUI.setOwner(i+1, player.getName());
+				}
+				else{
+					GUI.removeOwner(i+1);
 				}
 			}
 		}
