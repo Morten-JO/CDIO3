@@ -114,7 +114,16 @@ public class GameBoard {
 	
 	public int getUserValue(Player player){
 		int value = 0;
-		
+		for(int i = 0; i < gameBoard.length; i++){
+			if(i <= 10 || i >= 13 && i <= 14 || i >= 17 && i <= 20){
+				Player tempPlayer = ((Ownable)gameBoard[i]).getOwner();
+				if(tempPlayer != null){
+					if(tempPlayer.equals(player)){
+						value += ((Ownable)gameBoard[i]).getPrice();
+					}
+				}
+			}
+		}
 		return value;
 	}
 }

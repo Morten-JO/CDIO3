@@ -135,11 +135,7 @@ public class Game {
 		this.turn = turn;
 	}
 	
-	
-	/**
-	 * POSSIBLY TEMP
-	 * @return
-	 */
+	//Used as a fix for the field caravan, it breaks the link between game not knowing the GUI
 	public boolean askQuestion(String message, String buttonOne, String buttonTwo){
 		GUI.setChanceCard(message);
 		GUI.displayChanceCard();

@@ -28,5 +28,4 @@ public class TaxProcent extends Tax{
 	public String fieldText() {
 		return TextStrings.taxed+".";
 	}
-
 }

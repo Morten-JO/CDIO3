@@ -47,6 +47,5 @@ public class Territory extends Ownable{
 		else{
 			return name+" belongs to "+owner.getName()+" "+TextStrings.have_to_pay+" "+getRent()+".";
 		}
-	}
-	
+	}	
 }

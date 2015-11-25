@@ -31,7 +31,4 @@ public class Refuge extends Field{
 	public String toString() {
 		return super.toString()+" Refuge [bonus=" + bonus + "]";
 	}
-
-	
-
 }

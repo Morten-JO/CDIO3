@@ -56,5 +56,4 @@ public class Ownable extends Field{
 	public Player getOwner(){
 		return owner;
 	}
-	
 }

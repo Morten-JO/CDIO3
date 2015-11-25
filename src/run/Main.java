@@ -121,6 +121,7 @@ public class Main {
 			GUI.getUserButtonPressed("", TextStrings.ok);
 		}
 		else{
+			//ask question to user.
 			if(GUI.getUserLeftButtonPressed("", TextStrings.yes, TextStrings.no)){
 				if(!game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1), game)){
 					GUI.removeCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
