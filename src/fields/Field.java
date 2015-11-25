@@ -22,5 +22,5 @@ public abstract class Field {
 		return "Field [name=" + name + "]";
 	}
 	
-	public abstract String fieldText();
+	public abstract String fieldText(Player player, Game game);
 }

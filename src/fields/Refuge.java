@@ -23,7 +23,7 @@ public class Refuge extends Field{
 	}
 
 	@Override
-	public String fieldText() {
+	public String fieldText(Player player, Game game) {
 		return TextStrings.you_gain+" "+bonus+".";
 	}
 

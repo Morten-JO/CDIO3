@@ -25,7 +25,7 @@ public class TaxProcent extends Tax{
 	}
 	
 	@Override
-	public String fieldText() {
+	public String fieldText(Player player, Game game) {
 		return TextStrings.taxed+".";
 	}
 }

@@ -39,7 +39,7 @@ public class Ownable extends Field{
 	}
 
 	@Override
-	public String fieldText() {
+	public String fieldText(Player player, Game game) {
 		if(owner == null){
 			return TextStrings.like_to_buy+name+" "+TextStrings.word_for+" "+price+"?";
 		}

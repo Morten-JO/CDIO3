@@ -113,7 +113,7 @@ public class Main {
 		GUI.setCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
 		
 		//Show turn description in chance card
-		GUI.setChanceCard(game.getFieldText(game.getPlayer(player-1).getPosition()));
+		GUI.setChanceCard(game.getFieldText(game.getPlayer(player-1).getPosition(), game.getPlayer(player-1)));
 		GUI.displayChanceCard();
 		
 		//desc returns false, if its a question. buy etc.

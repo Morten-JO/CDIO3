@@ -119,8 +119,8 @@ public class Game {
 		return players.size();
 	}
 	
-	public String getFieldText(int index){
-		return gameBoard.getGameBoardIndex(index).fieldText();
+	public String getFieldText(int index, Player player){
+		return gameBoard.getGameBoardIndex(index).fieldText(player, this);
 	}
 	
 	public GameBoard getGameBoard(){

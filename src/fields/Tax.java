@@ -23,7 +23,7 @@ public class Tax extends Field{
 	}
 
 	@Override
-	public String fieldText() {
+	public String fieldText(Player player, Game game) {
 		return TextStrings.you_have_to_pay+taxAmount+" "+TextStrings.for_landing_on+" "+name+".";
 	}
 
