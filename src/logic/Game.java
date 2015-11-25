@@ -73,7 +73,7 @@ public class Game {
 			//Do lands on field, and check if user can pay.
 			if(!gameBoard.getGameBoardIndex(player.getPosition()).landOn(player, this)){
 				//remove ownership from player
-				gameBoard.removeOwnerShip(player);
+				
 				players.remove(player);
 			}
 			return true;
@@ -128,7 +128,11 @@ public class Game {
 	}
 	
 	public void removePlayer(Player player){
+		GUI.setBalance(player.getName(), 0);
+		gameBoard.removeOwnerShip(player);
 		players.remove(player);
+		
+		
 	}
 	
 	public void setTurn(int turn){
@@ -147,4 +151,6 @@ public class Game {
 			return false;
 		}
 	}
+	
+	
 }
