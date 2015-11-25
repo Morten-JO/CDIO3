@@ -1,19 +1,5 @@
 package language;
 
-/**
- * Date: 24/11/2015
- *
- * Project: 25_CDIO3
- *
- * File: TextStrings.java
- *
- * Created by: Morten Jørvad
- *
- * Github: https://github.com/Mortenbaws
- *
- * Email: morten2094@gmail.com
- */
-
 public class TextStrings {
 
 	public final static String write_player = "Write Player ";
