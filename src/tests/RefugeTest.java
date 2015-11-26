@@ -23,7 +23,7 @@ public class RefugeTest {
 		game = new Game(2, 6, players);
 		refuge1 = new Refuge("Testrefuge1", 1000);
 		refuge2 = new Refuge("Testrefuge2", 2000);
-		refuge3 = new Refuge("Testrefuge", 3000);
+		refuge3 = new Refuge("Testrefuge3", 3000);
 	}
 
 	@After
