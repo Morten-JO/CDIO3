@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import fields.Field;
 import fields.Tax;
-import fields.TaxProcent;
+import fields.TaxPercent;
 
 public class TaxProcentTest {
 
@@ -22,9 +22,9 @@ public class TaxProcentTest {
 	public void setUp() throws Exception {
 		String[] players = {"Testnavn"};
 		game = new Game(2, 6, players);
-		tax1 = new TaxProcent("TestTax1", 1000, 10);
-		tax2 = new TaxProcent("TestTax2", 2000, 20);
-		tax3 = new TaxProcent("TestTax3", 3000, 30);
+		tax1 = new TaxPercent("TestTax1", 1000, 10);
+		tax2 = new TaxPercent("TestTax2", 2000, 20);
+		tax3 = new TaxPercent("TestTax3", 3000, 30);
 	}
 
 	@After
@@ -41,9 +41,9 @@ public class TaxProcentTest {
 		Assert.assertNotNull(this.tax2);
 		Assert.assertNotNull(this.tax3);
 		
-		Assert.assertTrue(this.tax1 instanceof TaxProcent);
-		Assert.assertTrue(this.tax2 instanceof TaxProcent);
-		Assert.assertTrue(this.tax3 instanceof TaxProcent);
+		Assert.assertTrue(this.tax1 instanceof TaxPercent);
+		Assert.assertTrue(this.tax2 instanceof TaxPercent);
+		Assert.assertTrue(this.tax3 instanceof TaxPercent);
 	}
 
 	@Test
