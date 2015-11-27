@@ -66,7 +66,7 @@ public class Game {
 		}
 		
 		//a question will be needed from user.
-		if(gameBoard.askQuestion(player.getPosition())){
+		if(gameBoard.askQuestion(player.getPosition(), player)){
 			return false;
 		}
 		else{

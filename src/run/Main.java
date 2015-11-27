@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import language.TextStrings;
 import logic.Game;
-import desktop_codebehind.Car;
 import desktop_fields.Field;
 import desktop_fields.Street;
 import desktop_resources.GUI;
@@ -68,6 +67,9 @@ public class Main {
 					if(game.getAmountOfPlayer() < curr ){
 						i--;
 						if(i != 0){
+							if(game.getAmountOfPlayer() == 1){
+								break;
+							}
 							GUI.setBalance(game.getPlayer(i-1).getName(), 0);
 							game.setTurn(i);
 						}
@@ -129,7 +131,6 @@ public class Main {
 				if(!game.getGameBoard().getGameBoardIndex(game.getPlayer(player-1).getPosition()).landOn(game.getPlayer(player-1), game)){
 					GUI.removeCar(game.getPlayer(player-1).getPosition()+1, game.getPlayer(player-1).getName());
 					//remove ownership from player..
-					game.getGameBoard().removeOwnerShip(game.getPlayer(player-1));
 					game.removePlayer(game.getPlayer(player-1));
 					return false;
 					
