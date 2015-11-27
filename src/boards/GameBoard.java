@@ -60,6 +60,7 @@ public class GameBoard {
 		if(index >= 0 && index < gameBoard.length){
 			if(index >= 0 && index <= 10  || index >= 13 && index <= 14 || index >= 17 && index <= 20){
 				if(!(((Ownable) gameBoard[index]).isTaken())){
+					//check if player has balance for the ownable
 					if(player.getBalance() >= (((Ownable) gameBoard[index]).getPrice())){
 						return true;
 					}
