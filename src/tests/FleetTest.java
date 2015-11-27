@@ -21,8 +21,6 @@ public class FleetTest {
 	public void tearDown() throws Exception {
 		game.removePlayer(game.getPlayer(0));
 	}
-	
-	
 
 	@Test
 	public void testCheckFleetValuesAndLandOn() {
