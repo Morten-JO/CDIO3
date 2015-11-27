@@ -1,12 +1,14 @@
 package run;
 
 import java.util.ArrayList;
+import java.awt.Color;
 
 import language.TextStrings;
 import logic.Game;
 import desktop_fields.Field;
 import desktop_fields.Street;
 import desktop_resources.GUI;
+import desktop_codebehind.*;
 import entities.Player;
 import fields.Ownable;
 
@@ -48,9 +50,22 @@ public class Main {
 		array = names.toArray(array);
 		Game game = new Game(2, 6, array);
 		
+		//Adding colors to the cars
+		Color[] carcolor = new Color[6];
+		carcolor[0] = Color.BLACK;
+		carcolor[1] = Color.RED;
+		carcolor[2] = Color.YELLOW;
+		carcolor[3] = Color.GREEN;
+		carcolor[4] = Color.ORANGE;
+		carcolor[5] = Color.BLUE;
+		Car[] cars = new Car[array.length];
 		//add players to GUI
 		for(int i = 0; i < array.length; i++){
-			GUI.addPlayer(game.getPlayer(i).getName(), game.getPlayer(i).getBalance());
+			
+			
+			cars[i] = new Car.Builder().typeRacecar().primaryColor(carcolor[i]).build();
+			GUI.addPlayer(game.getPlayer(i).getName(), game.getPlayer(i).getBalance(), cars[i]);
+		
 		}
 		
 		//Main loop, runs forever, until broken out(when game win conditions are true)
