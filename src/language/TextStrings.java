@@ -32,6 +32,7 @@ public class TextStrings {
 	public final static String taxed = "You have paid the tax for caravan";
 	public final static String on = "on";
 	public final static String you_own = "You own this property, and do not have to pay.";
+	public final static String you_cant_afford = "You cant afford to buy";
 	
 	public final static String tribe_enc = "Tribe Encampment";
 	public final static String crater = "Crater";

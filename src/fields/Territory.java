@@ -21,6 +21,9 @@ public class Territory extends Ownable{
 	@Override
 	public boolean landOn(Player player, Game game){
 		if(owner == null){
+			if(!(player.getBalance() >= price)){
+				return true;
+			}
 			this.owner = player;
 			return player.adjustPoints(-price);
 		}
@@ -42,6 +45,9 @@ public class Territory extends Ownable{
 	@Override
 	public String fieldText(Player player, Game game) {
 		if(owner == null){
+			if(player.getBalance() < price){
+				return TextStrings.you_cant_afford+" "+name+".";
+			}
 			return TextStrings.like_to_buy+name+" "+TextStrings.word_for+" "+price+"?";
 		}
 		else if(owner.equals(player)){
