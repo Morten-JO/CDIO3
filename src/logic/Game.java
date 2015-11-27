@@ -128,6 +128,7 @@ public class Game {
 	
 	public void removePlayer(Player player){
 		GUI.setBalance(player.getName(), 0);
+		GUI.removeCar(player.getPosition()+1, player.getName());
 		gameBoard.removeOwnerShip(player);
 		players.remove(player);
 		

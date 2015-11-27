@@ -126,7 +126,6 @@ public class Main {
 			updateFields(game);
 			return false;
 		}
-		
 		GUI.setDice(game.getCup().getSumOfDice(0), game.getCup().getSumOfDice(1));
 		GUI.removeAllCars(game.getPlayer(player-1).getName());
 		//GUI is created to set car position not starting from zero indexed, so +1
