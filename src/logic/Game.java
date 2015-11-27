@@ -73,8 +73,7 @@ public class Game {
 			//Do lands on field, and check if user can pay.
 			if(!gameBoard.getGameBoardIndex(player.getPosition()).landOn(player, this)){
 				//remove ownership from player
-				
-				players.remove(player);
+				this.removePlayer(player);
 			}
 			return true;
 		}

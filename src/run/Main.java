@@ -104,6 +104,8 @@ public class Main {
 		//roll the player
 		boolean desc = game.rollPlayer(game.getPlayer(player-1));
 		if(game.getAmountOfPlayer() < curr ){
+			updateBalanceAllPlayers(game);
+			updateFields(game);
 			return false;
 		}
 		

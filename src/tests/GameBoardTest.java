@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import boards.GameBoard;
+import fields.Ownable;
 import fields.Refuge;
 
 public class GameBoardTest {
@@ -60,6 +61,10 @@ public class GameBoardTest {
 		board.removeOwnerShip(game.getPlayer(0));
 		expected = 0;
 		Assert.assertEquals(expected, board.getOwnerShipOfFleets(game.getPlayer(0)));
+		Assert.assertNull(((Ownable)board.getGameBoard()[17]).getOwner());
+		Assert.assertNull(((Ownable)board.getGameBoard()[18]).getOwner());
+		Assert.assertNull(((Ownable)board.getGameBoard()[19]).getOwner());
+		Assert.assertNull(((Ownable)board.getGameBoard()[20]).getOwner());
 	}
 
 	@Test
