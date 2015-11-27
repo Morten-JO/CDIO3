@@ -2,14 +2,13 @@ package run;
 
 import java.util.ArrayList;
 
-import desktop_codebehind.Car;
+import language.TextStrings;
+import logic.Game;
 import desktop_fields.Field;
 import desktop_fields.Street;
 import desktop_resources.GUI;
 import entities.Player;
 import fields.Ownable;
-import language.TextStrings;
-import logic.Game;
 
 public class Main {
 

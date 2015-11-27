@@ -10,7 +10,6 @@ import org.junit.Test;
 import fields.Field;
 import fields.Tax;
 
-
 public class TaxTest {
 
 	private Field tax1;
