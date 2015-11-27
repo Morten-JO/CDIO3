@@ -109,6 +109,7 @@ public class Main {
 	
 	/*
 	 * Tells user to roll dices by pressing button, and sets the approriate things after rolling the dices
+	 * Da, dette køres fra main klassen, skal det være static ellers kan den ikke accesses, fra mainen.
 	 */
 	public static boolean rollPlayer(int player, Game game){
 		//show turn to roll in chance card
